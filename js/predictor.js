@@ -1,20 +1,21 @@
-// Database of Base Times (Approximate Elite/WR standards in seconds)
-const STANDARDS = {
+// Motivational Standards (Approximate LCM 'A' times for Age Groups)
+// Source: Heuristic approximation of USA Swimming Motional Standards (A/AA/AAA mixture)
+const MOTIVATIONAL_TIMES = {
     male: {
-        '50_free': 21.0,
-        '100_free': 46.5,
-        '200_free': 102.0, // 1:42.0
-        '100_fly': 49.5,
-        '100_bk': 51.6,
-        '100_br': 57.0
+        '10': { '50_free': 31.0, '100_free': 109.0, '200_free': 230.0, '100_fly': 119.0, '100_bk': 120.0, '100_br': 130.0 },
+        '12': { '50_free': 28.0, '100_free': 61.0, '200_free': 136.0, '100_fly': 70.0, '100_bk': 71.0, '100_br': 79.0 },
+        '14': { '50_free': 25.5, '100_free': 56.5, '200_free': 124.0, '100_fly': 62.0, '100_bk': 64.0, '100_br': 70.0 },
+        '16': { '50_free': 24.5, '100_free': 53.5, '200_free': 117.0, '100_fly': 58.0, '100_bk': 60.0, '100_br': 66.0 },
+        '18': { '50_free': 23.5, '100_free': 51.5, '200_free': 113.0, '100_fly': 55.0, '100_bk': 57.0, '100_br': 63.0 },
+        'open': { '50_free': 22.5, '100_free': 49.5, '200_free': 108.0, '100_fly': 52.0, '100_bk': 54.0, '100_br': 60.0 }
     },
     female: {
-        '50_free': 23.6,
-        '100_free': 51.7,
-        '200_free': 112.9, // 1:52.9
-        '100_fly': 55.5,
-        '100_bk': 57.3,
-        '100_br': 64.1
+        '10': { '50_free': 31.5, '100_free': 110.0, '200_free': 235.0, '100_fly': 120.0, '100_bk': 122.0, '100_br': 132.0 },
+        '12': { '50_free': 28.5, '100_free': 62.0, '200_free': 138.0, '100_fly': 71.0, '100_bk': 72.0, '100_br': 80.0 },
+        '14': { '50_free': 27.5, '100_free': 59.5, '200_free': 129.0, '100_fly': 66.0, '100_bk': 67.0, '100_br': 75.0 },
+        '16': { '50_free': 26.5, '100_free': 57.5, '200_free': 125.0, '100_fly': 64.0, '100_bk': 65.0, '100_br': 73.0 },
+        '18': { '50_free': 26.0, '100_free': 56.5, '200_free': 123.0, '100_fly': 62.0, '100_bk': 63.0, '100_br': 71.0 },
+        'open': { '50_free': 25.0, '100_free': 54.0, '200_free': 118.0, '100_fly': 58.0, '100_bk': 60.0, '100_br': 68.0 }
     }
 };
 
@@ -23,7 +24,9 @@ const SUGGESTIONS = [
     "Work on your reaction time off the blocks.",
     "Improve your turn mechanics; races are won off the wall.",
     "Increase your stroke rate while maintaining distance per stroke.",
-    "Consistent breathing patterns will help endurance."
+    "Consistent breathing patterns will help endurance.",
+    "Try incorporating High Intensity Interval Training (HIIT) for speed.",
+    "Visualize your perfect race before you step on the blocks."
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,49 +68,51 @@ function parseTime(timeStr) {
     }
 }
 
+function getAgeGroup(age) {
+    if (age <= 10) return '10';
+    if (age <= 12) return '12';
+    if (age <= 14) return '14';
+    if (age <= 16) return '16';
+    if (age <= 18) return '18';
+    return 'open';
+}
+
 function calculatePrediction(userTime, event, gender, age) {
-    const baseTime = STANDARDS[gender][event];
+    const ageGroup = getAgeGroup(age);
+    const standardTime = MOTIVATIONAL_TIMES[gender][ageGroup][event];
 
-    // Calculate Ratio (User / Base)
-    // 1.0 means World Record pace
-    let ratio = userTime / baseTime;
-
-    // Age Adjustment (Be more lenient for younger/older swimmers)
-    // We "normalize" the ratio to what it would be for a prime age (20-25) swimmer
-    let ageFactor = 1.0;
-
-    if (age <= 10) ageFactor = 0.7; // 10 year olds are roughly 30% slower than pros naturally
-    else if (age <= 12) ageFactor = 0.8;
-    else if (age <= 14) ageFactor = 0.9;
-    else if (age <= 18) ageFactor = 0.95;
-    else if (age >= 40) ageFactor = 0.9; // Masters
-
-    // Adjusted Ratio: If I am 10 and swim a time that gives ratio 1.5 (50% slower than WR),
-    // My adjusted ratio might be 1.5 * 0.7 = 1.05 (Which is basically Olympic level for a 10yo)
-    const adjustedRatio = ratio * ageFactor;
+    // Performance Ratio (Lower is better)
+    // 0.90 = 10% faster than standard (State/Zone)
+    // 1.00 = Hits the standard (A time)
+    // 1.10 = 10% slower than standard (B time)
+    const ratio = userTime / standardTime;
 
     let title, description, color;
 
-    if (adjustedRatio < 1.15) {
-        title = "Future Olympian";
-        description = "Your trajectory is incredible. You are swimming at an elite level for your age.";
+    if (ratio < 0.88) {
+        title = "Elite / National Level";
+        description = `Incredible! Your time is well below the 'A' standard for age ${age}. You are swimming at a Sectional or Junior National pace.`;
         color = "#ffd700"; // Gold
-    } else if (adjustedRatio < 1.35) {
-        title = "National Contender";
-        description = "You have the speed to compete at the national level. Keep pushing!";
+    } else if (ratio < 0.95) {
+        title = "State / Zone Champion";
+        description = `You are crushing the standard! You would be competitive at State Championships. Keep refining those details.`;
         color = "#64ffda"; // Cyan
-    } else if (adjustedRatio < 1.6) {
-        title = "State Champion";
-        description = "You are well ahead of the pack. A solid collegiate career could be ahead.";
+    } else if (ratio <= 1.00) {
+        title = "Advanced Competitor (A Time)";
+        description = "You've hit the 'A' standard! This is a major milestone. Consistency is your next goal.";
         color = "#00b4d8"; // Blue
-    } else if (adjustedRatio < 2.0) {
-        title = "Competitive Swimmer";
-        description = "You have a strong foundation. Refine your technique to breakthrough to the next level.";
+    } else if (ratio < 1.10) {
+        title = "Strong Swimmer (BB Time)";
+        description = "You are just off the A standard. Work on your turns and starts to find those extra seconds.";
         color = "#a78bfa"; // Purple
+    } else if (ratio < 1.20) {
+        title = "Developing Swimmer (B Time)";
+        description = "Solid foundation. You have the mechanics, now you need the engine (endurance and power).";
+        color = "#9ca3af"; // Gray
     } else {
-        title = "Developing Athlete";
-        description = "Great start! Focus on technique and enjoying the water. Speed will come.";
-        color = "#999";
+        title = "Novice / C Time";
+        description = "Welcome to the journey! Focus on technique over speed right now. Smooth is fast.";
+        color = "#555";
     }
 
     return { title, description, color };
