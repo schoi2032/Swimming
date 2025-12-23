@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Predictor | AquaFlow</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color var(--transition-fast);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .result-box {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-medium);
+            text-align: center;
+            border: 1px solid var(--color-primary);
+        }
+
+        .result-box.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .prediction-score {
+            font-size: 3rem;
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            margin: 1rem 0;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Aqua<span class="text-gradient">Flow</span></div>
+                <div class="mobile-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="techniques.html">Techniques</a></li>
+                    <li><a href="famous-swimmers.html">Legends</a></li>
+                    <li><a href="world-records.html">Records</a></li>
+                    <li><a href="predictor.html" class="active btn btn-sm btn-primary">Career AI</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container" style="padding-top: 120px;">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <h1 class="section-title" style="justify-content: center;">AI Career Predictor</h1>
+                <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 3rem;">
+                    Enter your best time and let our algorithm analyze your potential based on age benchmarks and elite
+                    standards.
+                </p>
+
+                <div class="glass-panel" style="padding: 2rem;">
+                    <form id="predictorForm">
+                        <div class="form-group">
+                            <label for="event">Event</label>
+                            <select id="event" required>
+                                <option value="50_free">50m Freestyle</option>
+                                <option value="100_free">100m Freestyle</option>
+                                <option value="200_free">200m Freestyle</option>
+                                <option value="100_fly">100m Butterfly</option>
+                                <option value="100_bk">100m Backstroke</option>
+                                <option value="100_br">100m Breaststroke</option>
+                            </select>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" min="5" max="99" required placeholder="e.g., 16">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Time (MM:SS.ms or SS.ms)</label>
+                            <input type="text" id="time" required placeholder="e.g., 24.50 or 1:02.30">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Analyze Potential</button>
+                    </form>
+                </div>
+
+                <div id="resultBox" class="glass-panel result-box" style="margin-top: 2rem; padding: 2rem;">
+                    <i data-lucide="sparkles" style="color: var(--color-primary); width: 48px; height: 48px;"></i>
+                    <h3 style="margin-top: 1rem;">AI Analysis Complete</h3>
+                    <div class="prediction-score" id="predictionTitle">National Level</div>
+                    <p id="predictionDesc" style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                        Your time is in the top 15% for your age group. With consistent training, you could qualify for
+                        Senior Nationals within 2 years.
+                    </p>
+                    <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                        <span
+                            style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-muted);">Suggested
+                            Focus</span>
+                        <p id="suggestion" style="color: var(--color-white); font-weight: 500;">Improve your underwater
+                            kicks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/predictor.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

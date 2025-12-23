@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaFlow | The Art of Swimming</title>
+    <meta name="description" content="Explore swimming techniques, famous swimmers, world records, and predict your swimming career potential.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Aqua<span class="text-gradient">Flow</span></div>
+                <div class="mobile-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="techniques.html">Techniques</a></li>
+                    <li><a href="famous-swimmers.html">Legends</a></li>
+                    <li><a href="world-records.html">Records</a></li>
+                    <li><a href="predictor.html" class="btn btn-sm">Career AI</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h4 class="text-gradient">Dive Deeper</h4>
+                <h1>Master the <br>Art of Swimming</h1>
+                <p>Unlock the secrets of efficient hydrodynamics. Analyze techniques, study the legends, and predict your future.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <a href="techniques.html" class="btn btn-primary">Explore Techniques</a>
+                    <a href="predictor.html" class="btn">Predict Potential</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features container">
+            <h2 class="section-title">Why AquaFlow?</h2>
+            <div class="card-grid">
+                <div class="card glass-panel">
+                    <i data-lucide="waves" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                    <h3>Technique Analysis</h3>
+                    <p>Detailed breakdowns of Freestyle, Butterfly, Backstroke, and Breaststroke to improve your efficiency.</p>
+                </div>
+                <div class="card glass-panel">
+                    <i data-lucide="trophy" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                    <h3>Legendary Swimmers</h3>
+                    <p>Learn from the greats like Phelps, Ledecky, and Dressel. See what made them champions.</p>
+                </div>
+                <div class="card glass-panel">
+                    <i data-lucide="brain-circuit" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                    <h3>AI Career Estimator</h3>
+                    <p>Input your times and let our heuristic engine benchmark you against national standards.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--color-text-muted); opacity: 0.7;">
+        <p>&copy; 2025 AquaFlow. Built for Swimmers.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

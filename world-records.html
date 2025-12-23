@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Records | AquaFlow</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--color-text-main);
+            min-width: 600px;
+            /* Force scroll on small screens */
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Aqua<span class="text-gradient">Flow</span></div>
+                <div class="mobile-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="techniques.html">Techniques</a></li>
+                    <li><a href="famous-swimmers.html">Legends</a></li>
+                    <li><a href="world-records.html" class="active" style="color: var(--color-primary);">Records</a>
+                    </li>
+                    <li><a href="predictor.html" class="btn btn-sm">Career AI</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container" style="padding-top: 120px;">
+            <h1 class="section-title">World Records (Long Course)</h1>
+            <p style="color: var(--color-text-muted); max-width: 800px; margin-bottom: 3rem;">
+                The fastest times in history for the 50m pool configuration.
+            </p>
+
+            <div class="glass-panel" style="padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;">Men's Records</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Time</th>
+                                <th>Swimmer</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>50m Freestyle</td>
+                                <td>20.91</td>
+                                <td>Cesar Cielo (BRA)</td>
+                                <td>2009</td>
+                            </tr>
+                            <tr>
+                                <td>100m Freestyle</td>
+                                <td>46.40</td>
+                                <td>Pan Zhanle (CHN)</td>
+                                <td>2024</td>
+                            </tr>
+                            <tr>
+                                <td>200m Freestyle</td>
+                                <td>1:42.00</td>
+                                <td>Paul Biedermann (GER)</td>
+                                <td>2009</td>
+                            </tr>
+                            <tr>
+                                <td>400m Freestyle</td>
+                                <td>3:40.07</td>
+                                <td>Paul Biedermann (GER)</td>
+                                <td>2009</td>
+                            </tr>
+                            <tr>
+                                <td>100m Butterfly</td>
+                                <td>49.45</td>
+                                <td>Caeleb Dressel (USA)</td>
+                                <td>2021</td>
+                            </tr>
+                            <tr>
+                                <td>100m Breaststroke</td>
+                                <td>56.88</td>
+                                <td>Adam Peaty (GBR)</td>
+                                <td>2019</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;">Women's Records</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Time</th>
+                                <th>Swimmer</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>50m Freestyle</td>
+                                <td>23.61</td>
+                                <td>Sarah Sjöström (SWE)</td>
+                                <td>2023</td>
+                            </tr>
+                            <tr>
+                                <td>100m Freestyle</td>
+                                <td>51.71</td>
+                                <td>Sarah Sjöström (SWE)</td>
+                                <td>2017</td>
+                            </tr>
+                            <tr>
+                                <td>200m Freestyle</td>
+                                <td>1:52.85</td>
+                                <td>Mollie O'Callaghan (AUS)</td>
+                                <td>2023</td>
+                            </tr>
+                            <tr>
+                                <td>400m Freestyle</td>
+                                <td>3:55.38</td>
+                                <td>Ariarne Titmus (AUS)</td>
+                                <td>2023</td>
+                            </tr>
+                            <tr>
+                                <td>800m Freestyle</td>
+                                <td>8:04.79</td>
+                                <td>Katie Ledecky (USA)</td>
+                                <td>2016</td>
+                            </tr>
+                            <tr>
+                                <td>100m Butterfly</td>
+                                <td>55.18</td>
+                                <td>Gretchen Walsh (USA)</td>
+                                <td>2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--color-text-muted); opacity: 0.7;">
+        <p>&copy; 2025 AquaFlow. Built for Swimmers.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

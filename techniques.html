@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming Techniques | AquaFlow</title>
+    <meta name="description"
+        content="Master the four main swimming strokes: Freestyle, Butterfly, Backstroke, and Breaststroke.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Aqua<span class="text-gradient">Flow</span></div>
+                <div class="mobile-toggle">
+                    <i data-lucide="menu"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="techniques.html" class="active" style="color: var(--color-primary);">Techniques</a>
+                    </li>
+                    <li><a href="famous-swimmers.html">Legends</a></li>
+                    <li><a href="world-records.html">Records</a></li>
+                    <li><a href="predictor.html" class="btn btn-sm">Career AI</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container" style="padding-top: 120px;">
+            <h1 class="section-title">Master the Strokes</h1>
+            <p style="color: var(--color-text-muted); max-width: 800px; margin-bottom: 3rem;">
+                Swimming efficiency comes from minimizing drag and maximizing propulsion. Explore the mechanics of the
+                four competitive strokes.
+            </p>
+
+            <div class="stroke-section">
+                <article class="glass-panel"
+                    style="padding: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="text-gradient">Freestyle (Front Crawl)</h2>
+                        <i data-lucide="wind" style="color: var(--color-secondary);"></i>
+                    </div>
+                    <p>The fastest and most efficient stroke. Key focuses include high elbow recovery, continuous
+                        flutter kick, and neutral head position.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-primary);">Pro Tip:</h4>
+                        <p style="font-size: 0.9rem;">Rotate your hips with each stroke to lengthen your reach and
+                            engage your core muscles, not just your shoulders.</p>
+                    </div>
+                </article>
+
+                <article class="glass-panel"
+                    style="padding: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="text-gradient">Butterfly</h2>
+                        <i data-lucide="activity" style="color: var(--color-secondary);"></i>
+                    </div>
+                    <p>The most physically demanding stroke. It requires simultaneous arm movement and a dolphin kick.
+                        Rhythm is everything.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-primary);">Pro Tip:</h4>
+                        <p style="font-size: 0.9rem;">Don't lift your head too high to breathe. Keep your chin close to
+                            the water surface to maintain forward momentum.</p>
+                    </div>
+                </article>
+
+                <article class="glass-panel"
+                    style="padding: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="text-gradient">Backstroke</h2>
+                        <i data-lucide="move-up-right" style="color: var(--color-secondary);"></i>
+                    </div>
+                    <p>The only stroke swum on the back. It involves alternating arm movements and a flutter kick,
+                        similar to freestyle.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-primary);">Pro Tip:</h4>
+                        <p style="font-size: 0.9rem;">Keep your hips high near the surface. If they drop, you create
+                            massive drag. Imagine balancing a cup of water on your forehead.</p>
+                    </div>
+                </article>
+
+                <article class="glass-panel"
+                    style="padding: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="text-gradient">Breaststroke</h2>
+                        <i data-lucide="circle-dot" style="color: var(--color-secondary);"></i>
+                    </div>
+                    <p>The oldest stroke. It relies on a frog kick and simultaneous arm pull. It is the slowest but most
+                        technical stroke.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-primary);">Pro Tip:</h4>
+                        <p style="font-size: 0.9rem;">Shoot your hands forward quickly (the "glide") after each pull.
+                            That split second of streamlining is where you gain distance.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--color-text-muted); opacity: 0.7;">
+        <p>&copy; 2025 AquaFlow. Built for Swimmers.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
