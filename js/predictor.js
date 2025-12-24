@@ -1,5 +1,5 @@
 // Motivational Standards (Approximate LCM 'A' times for Age Groups)
-// Source: Heuristic approximation of USA Swimming Motional Standards (A/AA/AAA mixture)
+// Source: Heuristic approximation of USA Swimming Motional Standards
 const MOTIVATIONAL_TIMES = {
     male: {
         '10': { '50_free': 38.0, '100_free': 109.0, '200_free': 230.0, '100_fly': 119.0, '100_bk': 120.0, '100_br': 130.0 },
@@ -19,15 +19,14 @@ const MOTIVATIONAL_TIMES = {
     }
 };
 
-const SUGGESTIONS = [
-    "Focus on your underwater dolphin kicks to drop time.",
-    "Work on your reaction time off the blocks.",
-    "Improve your turn mechanics; races are won off the wall.",
-    "Increase your stroke rate while maintaining distance per stroke.",
-    "Consistent breathing patterns will help endurance.",
-    "Try incorporating High Intensity Interval Training (HIIT) for speed.",
-    "Visualize your perfect race before you step on the blocks."
-];
+const MAIN_TIPS = {
+    '50_free': "Explosiveness is key. Work on your vertical jump and reaction time.",
+    '100_free': "The second 50 defines the great swimmers. Train your backend speed.",
+    '200_free': "Controlled speed. The first 100 should feel easy, the third 50 is where you win.",
+    '100_fly': "Rhythm over muscle. Keep your hips high and chin low.",
+    '100_bk': "Underwaters are the 'fifth stroke'. Master your dolphin kicks off every wall.",
+    '100_br': "Streamline is everything. Reduce drag during your recovery phase."
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('predictorForm');
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function parseTime(timeStr) {
-    // Handling MM:SS.ms or SS.ms
     if (timeStr.includes(':')) {
         const parts = timeStr.split(':');
         const min = parseFloat(parts[0]);
@@ -77,58 +75,73 @@ function getAgeGroup(age) {
     return 'open';
 }
 
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = (seconds % 60).toFixed(2);
+    return m > 0 ? `${m}:${s.padStart(5, '0')}` : s;
+}
+
 function calculatePrediction(userTime, event, gender, age) {
     const ageGroup = getAgeGroup(age);
     const standardTime = MOTIVATIONAL_TIMES[gender][ageGroup][event];
-
-    // Performance Ratio relative to 'A' Standard (1.00)
-    // Based on USA Swimming Time Standards approximations:
-    // AAAA = ~0.90 of A time
-    // AAA  = ~0.93 of A time
-    // AA   = ~0.96 of A time
-    // A    = 1.00
-    // BB   = ~1.10
-    // B    = ~1.20
     const ratio = userTime / standardTime;
 
     let title, description, color;
+    let projectedTime = userTime;
+    let projectionMsg = "";
 
-    // We use tight thresholds to simulate real competitive brackets
+    // Realistic Projection Logic
+    // Assumption: ~2% improvement per year until 19
+    const yearsToPeak = Math.max(0, 19 - age);
+    if (yearsToPeak > 0) {
+        // Compound improvement
+        // Top simmers improve less (diminishing returns), developed swimmers improve less
+        // Simplified: 1.5% to 3% based on current speed
+        let improvementRate = 0.975; // 2.5% drop
+        if (ratio < 0.90) improvementRate = 0.99; // Already fast
+        
+        projectedTime = userTime * Math.pow(improvementRate, yearsToPeak);
+        projectionMsg = `Based on your current trajectory, your projected potential at age 19 is <strong>${formatTime(projectedTime)}</strong>.`;
+    }
+
     if (ratio < 0.85) {
         title = "Future Olympian (National Team Pace)";
-        description = `ASTONISHING! You are swimming significantly faster than the 'AAAA' standard. You are on track for Junior Nationals and potentially Olympic Trials.`;
-        color = "#ff0055"; // Pink/Red for elite
+        description = `ASTONISHING! You are faster than the elite 'AAAA' standard. ` + projectionMsg;
+        color = "#ff0055"; 
     } else if (ratio < 0.90) {
         title = "Elite (AAAA Time)";
-        description = `Top 2% of swimmers your age. This is a Zone/Sectional qualifying time. Outstanding technique and power.`;
-        color = "#ffd700"; // Gold
+        description = `Top 2% of swimmers your age. Zone qualifying time. ` + projectionMsg;
+        color = "#ffd700"; 
     } else if (ratio < 0.93) {
         title = "Advanced (AAA Time)";
-        description = `Top 5-8% of swimmers. You have mastered the fundamentals and have great conditioning. Keep aiming for that Sectional cut.`;
-        color = "#c0c0c0"; // Silver
+        description = `Top 5-8% of swimmers. Great conditioning. ` + projectionMsg;
+        color = "#c0c0c0"; 
     } else if (ratio < 0.965) {
         title = "Highly Competitive (AA Time)";
-        description = `Top 15%. This is a very respectful time. Focus on race details—starts, turns, and breakouts—to drop to Triple-A.`;
-        color = "#cd7f32"; // Bronze
+        description = `Top 15%. Respectful time. Focus on race details to drop to Triple-A.`;
+        color = "#cd7f32"; 
     } else if (ratio <= 1.00) {
         title = "Competitive (A Time)";
-        description = `You have hit the gold standard for age-group swimming. You are ahead of the vast majority of recreational swimmers.`;
-        color = "#00b4d8"; // Blue
+        description = `Gold standard for age-group swimming. ` + projectionMsg;
+        color = "#00b4d8"; 
     } else if (ratio < 1.10) {
         title = "Strong (BB Time)";
-        description = `Above average. You have a solid stroke but likely need to work on endurance or efficiency to break the minute barrier/next threshold.`;
-        color = "#a78bfa"; // Purple
+        description = `Above average. Work on endurance to break the next barrier.`;
+        color = "#a78bfa"; 
     } else if (ratio < 1.20) {
         title = "Developing (B Time)";
-        description = `Good start. You are learning the sport well. Focus on maintaining good form when you get tired.`;
-        color = "#9ca3af"; // Gray
+        description = `Good start. Focus on maintaining good form when tired.`;
+        color = "#9ca3af"; 
     } else {
         title = "Novice";
-        description = `Welcome to the sport! Don't worry about the clock yet. Focus on long, smooth strokes and having fun. Speed follows technique.`;
+        description = `Welcome to the sport! Focus on long, smooth strokes. Speed follows technique.`;
         color = "#555";
     }
 
-    return { title, description, color };
+    // Get specific tip
+    const specificTip = MAIN_TIPS[event] || "Visualize your race.";
+
+    return { title, description, color, suggestion: specificTip };
 }
 
 function displayResult(prediction) {
@@ -139,13 +152,9 @@ function displayResult(prediction) {
 
     titleEl.textContent = prediction.title;
     titleEl.style.color = prediction.color;
-    descEl.textContent = prediction.description;
-
-    // Random suggestion
-    suggEl.textContent = SUGGESTIONS[Math.floor(Math.random() * SUGGESTIONS.length)];
+    descEl.innerHTML = prediction.description; // Enable HTML for bold time
+    suggEl.textContent = prediction.suggestion;
 
     resultBox.classList.add('active');
-
-    // Scroll result into view
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
