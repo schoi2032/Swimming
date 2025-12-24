@@ -81,37 +81,50 @@ function calculatePrediction(userTime, event, gender, age) {
     const ageGroup = getAgeGroup(age);
     const standardTime = MOTIVATIONAL_TIMES[gender][ageGroup][event];
 
-    // Performance Ratio (Lower is better)
-    // 0.90 = 10% faster than standard (State/Zone)
-    // 1.00 = Hits the standard (A time)
-    // 1.10 = 10% slower than standard (B time)
+    // Performance Ratio relative to 'A' Standard (1.00)
+    // Based on USA Swimming Time Standards approximations:
+    // AAAA = ~0.90 of A time
+    // AAA  = ~0.93 of A time
+    // AA   = ~0.96 of A time
+    // A    = 1.00
+    // BB   = ~1.10
+    // B    = ~1.20
     const ratio = userTime / standardTime;
 
     let title, description, color;
 
-    if (ratio < 0.88) {
-        title = "Elite / National Level";
-        description = `Incredible! Your time is well below the 'A' standard for age ${age}. You are swimming at a Sectional or Junior National pace.`;
+    // We use tight thresholds to simulate real competitive brackets
+    if (ratio < 0.85) {
+        title = "Future Olympian (National Team Pace)";
+        description = `ASTONISHING! You are swimming significantly faster than the 'AAAA' standard. You are on track for Junior Nationals and potentially Olympic Trials.`;
+        color = "#ff0055"; // Pink/Red for elite
+    } else if (ratio < 0.90) {
+        title = "Elite (AAAA Time)";
+        description = `Top 2% of swimmers your age. This is a Zone/Sectional qualifying time. Outstanding technique and power.`;
         color = "#ffd700"; // Gold
-    } else if (ratio < 0.95) {
-        title = "State / Zone Champion";
-        description = `You are crushing the standard! You would be competitive at State Championships. Keep refining those details.`;
-        color = "#64ffda"; // Cyan
+    } else if (ratio < 0.93) {
+        title = "Advanced (AAA Time)";
+        description = `Top 5-8% of swimmers. You have mastered the fundamentals and have great conditioning. Keep aiming for that Sectional cut.`;
+        color = "#c0c0c0"; // Silver
+    } else if (ratio < 0.965) {
+        title = "Highly Competitive (AA Time)";
+        description = `Top 15%. This is a very respectful time. Focus on race details—starts, turns, and breakouts—to drop to Triple-A.`;
+        color = "#cd7f32"; // Bronze
     } else if (ratio <= 1.00) {
-        title = "Advanced Competitor (A Time)";
-        description = "You've hit the 'A' standard! This is a major milestone. Consistency is your next goal.";
+        title = "Competitive (A Time)";
+        description = `You have hit the gold standard for age-group swimming. You are ahead of the vast majority of recreational swimmers.`;
         color = "#00b4d8"; // Blue
     } else if (ratio < 1.10) {
-        title = "Strong Swimmer (BB Time)";
-        description = "You are just off the A standard. Work on your turns and starts to find those extra seconds.";
+        title = "Strong (BB Time)";
+        description = `Above average. You have a solid stroke but likely need to work on endurance or efficiency to break the minute barrier/next threshold.`;
         color = "#a78bfa"; // Purple
     } else if (ratio < 1.20) {
-        title = "Developing Swimmer (B Time)";
-        description = "Solid foundation. You have the mechanics, now you need the engine (endurance and power).";
+        title = "Developing (B Time)";
+        description = `Good start. You are learning the sport well. Focus on maintaining good form when you get tired.`;
         color = "#9ca3af"; // Gray
     } else {
-        title = "Novice / C Time";
-        description = "Welcome to the journey! Focus on technique over speed right now. Smooth is fast.";
+        title = "Novice";
+        description = `Welcome to the sport! Don't worry about the clock yet. Focus on long, smooth strokes and having fun. Speed follows technique.`;
         color = "#555";
     }
 

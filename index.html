@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaFlow | The Art of Swimming</title>
-    <meta name="description" content="Explore swimming techniques, famous swimmers, world records, and predict your swimming career potential.">
-    
+    <meta name="description"
+        content="Explore swimming techniques, famous swimmers, world records, and predict your swimming career potential.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <header id="header">
         <div class="container">
@@ -37,36 +42,94 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" style="min-height: 80vh;">
             <div class="container hero-content">
-                <h4 class="text-gradient">Dive Deeper</h4>
-                <h1>Master the <br>Art of Swimming</h1>
-                <p>Unlock the secrets of efficient hydrodynamics. Analyze techniques, study the legends, and predict your future.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                    <a href="techniques.html" class="btn btn-primary">Explore Techniques</a>
-                    <a href="predictor.html" class="btn">Predict Potential</a>
-                </div>
+                <span
+                    style="color: var(--color-primary); font-family: var(--font-heading); letter-spacing: 2px; text-transform: uppercase;">The
+                    Origins</span>
+                <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1rem;">A History of <br><span
+                        class="text-gradient">Human Hydrodynamics</span></h1>
+                <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem; color: var(--color-text-muted);">
+                    From ancient cave paintings to the high-tech suits of today. Discover how humanity mastered the
+                    water.
+                </p>
             </div>
         </section>
 
-        <section class="features container">
-            <h2 class="section-title">Why AquaFlow?</h2>
-            <div class="card-grid">
-                <div class="card glass-panel">
-                    <i data-lucide="waves" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
-                    <h3>Technique Analysis</h3>
-                    <p>Detailed breakdowns of Freestyle, Butterfly, Backstroke, and Breaststroke to improve your efficiency.</p>
+        <section class="container" style="padding-bottom: 4rem;">
+            <div class="glass-panel reveal" style="padding: 3rem; margin-bottom: 4rem;">
+                <h2 class="section-title">Ancient Beginnings</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div>
+                        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                            Swimming is as old as humanity. The earliest record of swimming dates back to <strong>Stone
+                                Age</strong> paintings from around 10,000 years ago in the Cave of Swimmers near Wadi
+                            Sora in southwestern Egypt.
+                        </p>
+                        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                            Written references date from 2000 B.C., including in the Epic of Gilgamesh, the Iliad, and
+                            the Bible. In ancient Greece and Rome, swimming was a part of martial training and element
+                            of education. Plato once said that a man who doesn't know how to swim is uneducated.
+                        </p>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.05); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <span style="opacity: 0.5;">[Ancient Art Placeholder]</span>
+                    </div>
                 </div>
-                <div class="card glass-panel">
-                    <i data-lucide="trophy" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
-                    <h3>Legendary Swimmers</h3>
-                    <p>Learn from the greats like Phelps, Ledecky, and Dressel. See what made them champions.</p>
+            </div>
+
+            <div class="glass-panel reveal" style="padding: 3rem; margin-bottom: 4rem;">
+                <h2 class="section-title">The Competitive Era</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <span style="opacity: 0.5;">[1896 Olympics Placeholder]</span>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                            Swimming emerged as a competitive sport in the early 19th century in England. The National
+                            Swimming Society, formed in London in 1837, held regular competitions.
+                        </p>
+                        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                            <strong>The First Olympics (1896):</strong> Swimming was part of the first modern Olympic
+                            games in Athens. Four events were held: 100m, 500m, and 1200m freestyle, plus a sailors'
+                            event. All were held in the open ocean (Bay of Zea).
+                        </p>
+                        <p style="color: var(--color-text-muted);">
+                            <strong>The Crawl:</strong> The stroke we know as "Freestyle" wasn't popularized until the
+                            early 1900s. It was adapted from the "Australian Crawl," which itself was inspired by the
+                            swimming style of South Pacific islanders.
+                        </p>
+                    </div>
                 </div>
-                <div class="card glass-panel">
-                    <i data-lucide="brain-circuit" style="color: var(--color-primary); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
-                    <h3>AI Career Estimator</h3>
-                    <p>Input your times and let our heuristic engine benchmark you against national standards.</p>
-                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="padding: 3rem;">
+                <h2 class="section-title">Modern Evolution</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                    The 20th century saw massive leaps in technique and technology.
+                </p>
+                <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <li style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px;">
+                        <h4 style="color: var(--color-primary); margin-bottom: 0.5rem;">1956: Butterfly Born</h4>
+                        <p style="font-size: 0.9rem; color: var(--color-text-muted);">The butterfly stroke evolved from
+                            breaststroke (recovering arms out of water) and was finally recognized as a separate stroke
+                            for the Melbourne Olympics.</p>
+                    </li>
+                    <li style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px;">
+                        <h4 style="color: var(--color-primary); margin-bottom: 0.5rem;">1976: Goggles</h4>
+                        <p style="font-size: 0.9rem; color: var(--color-text-muted);">Goggles were first allowed in
+                            Olympic competition in 1976, revolutionizing training volume since chlorine no longer
+                            destroyed eyes.</p>
+                    </li>
+                    <li style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px;">
+                        <h4 style="color: var(--color-primary); margin-bottom: 0.5rem;">2008: Super Suits</h4>
+                        <p style="font-size: 0.9rem; color: var(--color-text-muted);">The poly-urethane "tech suit" era
+                            smashed nearly every world record before being banned in 2010 to preserve the integrity of
+                            the sport.</p>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
@@ -80,4 +143,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>
